@@ -14,7 +14,7 @@ class UserController extends Controller {
   public function login() {
     if (Auth::attempt(['email' => request('email'), 'password' => request('password')])){
       $user = Auth::user();
-      $success['token'] = $user->createToken('App')->accessToken;
+      $success['token'] = $user->createToken('MyApp')->accessToken;
       
       return response()->json([
         'code' => $this->successStatus,
@@ -50,8 +50,11 @@ class UserController extends Controller {
 
     $input = $request->all();
     $input['password'] = bcrypt($input['password']);
+    $input['premium_user'] = '0';
+    $input['credits'] = 20;
     $user = User::create($input);
-    $success['token'] = $user->createToken('App')->accessToken;
+    
+    $success['token'] = $user->createToken('MyApp')->accessToken;
     $success['name'] = $user->name;
     
     return response()->json([
@@ -68,6 +71,21 @@ class UserController extends Controller {
       'code' => $this->successStatus,
       'status' => true,
       'message' => 'Get user data',
+      'data' => $user
+    ], $this->successStatus);
+  }
+
+  public function updateStatus() {
+    $user = Auth::user();
+
+    $user['credits'] = $user['premium_user'] == 0 ? 40 : 20;
+    $user['premium_user'] = $user['premium_user'] == 0 ? 1 : 0;
+    $user->save();
+
+    return response()->json([
+      'code' => $this->successStatus,
+      'status' => true,
+      'message' => 'Update user status success',
       'data' => $user
     ], $this->successStatus);
   }

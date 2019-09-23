@@ -18,8 +18,9 @@ Route::post('register', 'API\UserController@register');
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::post('details', 'API\UserController@details');
+    Route::patch('update_status', 'API\UserController@updateStatus');
     Route::post('logout', 'API\UserController@logout');
+
+    // Building
+    // Route::resource('buildings', 'API\BuildingController');
 });
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });

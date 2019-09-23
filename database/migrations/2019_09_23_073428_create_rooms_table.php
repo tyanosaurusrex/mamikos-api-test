@@ -20,7 +20,7 @@ class CreateRoomsTable extends Migration
             $table->float('room_length', 2, 1);
             $table->float('room_width', 2, 1);
             $table->integer('price');
-            $table->enum('is_available', ['no', 'yes']);
+            $table->enum('is_available', [0, 1]); // 0: no, 1: yes
             $table->timestamps();
 
             $table->foreign('building_id')->references('id')->on('buildings');
