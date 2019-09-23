@@ -10,8 +10,10 @@ use Illuminate\Support\Facades\DB;
 use Validator;
 
 class BuildingController extends Controller {
+  public $successStatus = 200;
+
 	public function index() {}
-	public function create(Request $request) {
+	public function store(Request $request) {
 		$user = Auth::user();
 
 		if ($user['role'] == 0) {

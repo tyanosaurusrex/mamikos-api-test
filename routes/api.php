@@ -18,9 +18,12 @@ Route::post('register', 'API\UserController@register');
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::post('details', 'API\UserController@details');
-    Route::patch('update_status', 'API\UserController@updateStatus');
+    Route::put('update_status', 'API\UserController@updateStatus');
     Route::post('logout', 'API\UserController@logout');
 
     // Building
-    // Route::resource('buildings', 'API\BuildingController');
+    Route::resource('buildings', 'API\BuildingController');
+
+    //Room
+    Route::resource('rooms', 'API\RoomController');
 });

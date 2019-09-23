@@ -79,7 +79,7 @@ class UserController extends Controller {
     $user = Auth::user();
 
     $user['credits'] = $user['premium_user'] == 0 ? 40 : 20;
-    $user['premium_user'] = $user['premium_user'] == 0 ? 1 : 0;
+    $user['premium_user'] = $user['premium_user'] == 0 ? "1" : "0";
     $user->save();
 
     return response()->json([
