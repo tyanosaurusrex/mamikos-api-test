@@ -15,15 +15,17 @@ use Illuminate\Http\Request;
 
 Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
+Route::get('kosts', 'API\KostController@index');
+Route::get('kosts/{id}', 'API\KostController@show');
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::post('details', 'API\UserController@details');
-    Route::put('update_status', 'API\UserController@updateStatus');
+    Route::put('upgrade_status', 'API\UserController@upgradeStatus');
     Route::post('logout', 'API\UserController@logout');
 
-    // Building
-    Route::resource('buildings', 'API\BuildingController');
+    //Kost
+    Route::resource('kosts', 'API\KostController', ['except' => 'index', 'show']);
 
-    //Room
-    Route::resource('rooms', 'API\RoomController');
+    //Activity
+    Route::post('activities/ask', 'API\ActivityController@askQuestion');
 });

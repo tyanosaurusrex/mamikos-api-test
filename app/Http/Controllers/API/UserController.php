@@ -75,11 +75,11 @@ class UserController extends Controller {
     ], $this->successStatus);
   }
 
-  public function updateStatus() {
+  public function upgradeStatus() {
     $user = Auth::user();
 
-    $user['credits'] = $user['premium_user'] == 0 ? 40 : 20;
-    $user['premium_user'] = $user['premium_user'] == 0 ? "1" : "0";
+    $user['credits'] = 40;
+    $user['premium_user'] = "1";
     $user->save();
 
     return response()->json([
