@@ -19,10 +19,11 @@ Regular user will have 20 credit and premium user will have 40 credit per month.
 # Setup Project On Your Local Machine
 
 ## Prerequisites
-1. Apache
+1. Apache Web Server
 2. PHP 7.2
-3. MySQL
-4. Git
+3. Composer
+4. MySQL
+5. Git
 
 ## Setup Guide
 1. Make sure you install all the Prerequisite
@@ -30,19 +31,23 @@ Regular user will have 20 credit and premium user will have 40 credit per month.
 
 `git@github.com:tyanosaurusrex/mamikos-api-test.git`
 
-3. Copy the env.example file and rename the new one with .env. Update if needed
+3. Install the dependencies using this command
 
-4. Setup the database by create new database on you local machine, and run these commands
+`composer install`
+
+4. Copy the env.example file and rename the new one with .env. Update if needed
+
+5. Setup the database by create new database on you local machine, and run these commands
 
 `php artisan migrate`
 
-5. Run the project using this command
+6. Run the project using this command
 
 `php artisan serve`
 
 and the project will be running on `http://localhost:8000`
 
-6. If there's an error with Personal Access Client, run
+7. If there's a problem with Personal Access Client, run
 
 `php artisan passport:install`
 
