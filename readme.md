@@ -53,6 +53,7 @@ and the project will be running on `http://localhost:8000`
 **Register User**
 
 > POST /api/register
+
 Body:
 ```
 {
@@ -66,6 +67,7 @@ Body:
 **Login User**
 
 > POST /api/login
+
 Body:
 ```
 {
@@ -76,6 +78,7 @@ Body:
 **Logout User**
 
 > POST /api/logout
+
 Authorization: Bearer Token
 
 
@@ -83,10 +86,12 @@ Authorization: Bearer Token
 
 **User Detail**
 > POST /api/users/details
+
 Authorization: Bearer Token
 
 **Upgrade User Status**
 > PUT /api/users/upgrade_status
+
 Authorization: Bearer Token
 
 ## Kost /api/kosts/
@@ -99,6 +104,7 @@ Authorization: Bearer Token
 
 **Create New Kost**
 > POST /api/kosts
+
 Authorization: Bearer Token
 Body:
 ```
@@ -114,6 +120,7 @@ Body:
 
 **Update Kost Detail**
 > PUT /api/kosts/{id}
+
 Authorization: Bearer Token
 Body:
 ```
@@ -129,12 +136,14 @@ Body:
 
 **Delete Kost**
 > DELETE /api/kosts/{id}
+
 Authorization: Bearer Token
 
 ## User Activity /api/activities
 
 **Ask Question**
 > POST /api/activities/ask
+
 Authorization: Bearer Token
 Body: 
 ```
