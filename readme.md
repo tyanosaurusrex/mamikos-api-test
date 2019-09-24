@@ -106,6 +106,7 @@ Authorization: Bearer Token
 > POST /api/kosts
 
 Authorization: Bearer Token
+
 Body:
 ```
 {
@@ -122,6 +123,7 @@ Body:
 > PUT /api/kosts/{id}
 
 Authorization: Bearer Token
+
 Body:
 ```
 {
@@ -145,6 +147,7 @@ Authorization: Bearer Token
 > POST /api/activities/ask
 
 Authorization: Bearer Token
+
 Body: 
 ```
 {
