@@ -59,8 +59,8 @@ class KostController extends Controller {
 		$validator = Validator::make($request->all(), [
 			'name' => 'required',
 			'city' => 'required',
-			'room_length' => 'required|numeric|min:1',
-			'room_width' => 'required|numeric|min:1',
+			'room_length' => 'required|numeric|gt:0',
+			'room_width' => 'required|numeric|gt:0',
 			'available_rooms' => 'required|numeric|min:0',
 			'price' => 'required|numeric'
     ]);
@@ -130,6 +130,8 @@ class KostController extends Controller {
 		if ($request['room_length'] != null) { $kost['room_length'] = $request['room_length']; }
 		if ($request['room_width'] != null) { $kost['room_width'] = $request['room_width']; }
 		if ($request['price'] != null) { $kost['price'] = $request['price']; }
+		if ($request['available_rooms'] != null) { $kost['available_rooms'] = $request['available_rooms']; }
+		if ($request['city'] != null) { $kost['city'] = $request['city']; }
 		
 		$kost->save();
 		$kost['room_size'] = $kost->roomSize();

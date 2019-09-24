@@ -18,8 +18,8 @@ class CreateKostsTable extends Migration
             $table->unsignedBigInteger('owner_id');
             $table->string('name');
             $table->string('city');
-            $table->float('room_length', 2, 1);
-            $table->float('room_width', 2, 1);
+            $table->float('room_length', 3, 2);
+            $table->float('room_width', 3, 2);
             $table->integer('price');
             $table->integer('available_rooms');
             $table->timestamps();

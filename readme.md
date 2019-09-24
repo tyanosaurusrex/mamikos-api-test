@@ -1,72 +1,146 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# MamiKos API Test
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## About Project
+MamiKos is an app where user can search kost for room that have been added by owner.
 
-## About Laravel
+Also, user can ask about room availability using credit system.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Regular user will have 20 credit and premium user will have 40 credit per month.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Project Requirement
+1. Owner is allowed to add more than 1 kost
+2. Owner is allowed to update and delete his/her kost
+3. User can see kost list that have been added
+4. User search kost by name, city, or price
+5. User can sort the list by price
+6. User can see kost detail
+7. User ask about room availability using their credit (5 credit per action)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Setup Project On Your Local Machine
 
-## Learning Laravel
+## Prerequisites
+1. Apache
+2. PHP 7.2
+3. MySQL
+4. Git
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Setup Guide
+1. Make sure you install all the Prerequisite
+2. Clone the project from github to your directory
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+`git@github.com:tyanosaurusrex/mamikos-api-test.git`
 
-## Laravel Sponsors
+3. Copy the env.example file and rename the new one with .env. Update if needed
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+4. Setup the database by create new database on you local machine, and run these commands
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+`php artisan migrate`
 
-## Contributing
+5. Run the project using this command
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+`php artisan serve`
 
-## Security Vulnerabilities
+and the project will be running on `http://localhost:8000`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. If there's an error with Personal Access Client, run
 
-## License
+`php artisan passport:install`
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# API List
+
+## Auth /api/
+
+**Register User**
+
+> POST /api/register
+Body:
+```
+{
+	"name": "owner1",
+	"email": "owner1@mail.com",
+	"password": "owner1",
+	"confirm_password": "owner1",
+	"role": "1"
+}
+```
+**Login User**
+
+> POST /api/login
+Body:
+```
+{
+	"email": "user0@mail.com",
+	"password": "user0"
+}
+```
+**Logout User**
+
+> POST /api/logout
+Authorization: Bearer Token
+
+
+## User /api/users/
+
+**User Detail**
+> POST /api/users/details
+Authorization: Bearer Token
+
+**Upgrade User Status**
+> PUT /api/users/upgrade_status
+Authorization: Bearer Token
+
+## Kost /api/kosts/
+
+**Show Kosts List with Query Search**
+> GET /api/kosts?city={city}&sort={sort}&by={sortby}
+
+**Show Kost Detail**
+> GET /api/kosts/{id}
+
+**Create New Kost**
+> POST /api/kosts
+Authorization: Bearer Token
+Body:
+```
+{
+	"name": "Kost B",
+	"city": "yogya",
+	"room_length": 3,
+	"room_width": 3,
+	"available_rooms": 2,
+	"price": 700000
+}
+```
+
+**Update Kost Detail**
+> PUT /api/kosts/{id}
+Authorization: Bearer Token
+Body:
+```
+{
+	"name": "Kost B",
+	"city": "yogya",
+	"room_length": 3,
+	"room_width": 3,
+	"available_rooms": 2,
+	"price": 700000
+}
+```
+
+**Delete Kost**
+> DELETE /api/kosts/{id}
+Authorization: Bearer Token
+
+## User Activity /api/activities
+
+**Ask Question**
+> POST /api/activities/ask
+Authorization: Bearer Token
+Body: 
+```
+{
+	"recipient_id": 3,
+	"activity": "Ask",
+	"credit_usage": 5
+}
+```

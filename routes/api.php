@@ -19,8 +19,8 @@ Route::get('kosts', 'API\KostController@index');
 Route::get('kosts/{id}', 'API\KostController@show');
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::post('details', 'API\UserController@details');
-    Route::put('upgrade_status', 'API\UserController@upgradeStatus');
+    Route::post('users/details', 'API\UserController@details');
+    Route::put('users/upgrade_status', 'API\UserController@upgradeStatus');
     Route::post('logout', 'API\UserController@logout');
 
     //Kost
